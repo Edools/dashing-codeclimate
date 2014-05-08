@@ -14,7 +14,7 @@ def get_gpa(api_key, repo_name)
   stats = JSON.parse(response.body)
 end
 
-SCHEDULER.every '10s', :first_in => 0 do |job|
+SCHEDULER.every '1h', :first_in => 0 do |job|
   config['repos'].each do |repo|
     gpa = get_gpa(api_key, repo[1])
     current_gpa = gpa['last_snapshot']['gpa'].to_f
